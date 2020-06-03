@@ -37,7 +37,7 @@ public class DataBase {
 
     public int deleteById(Long id) {
         return jdbcTemplate.update(
-                "delete people where id = ?",
+                "delete from person where id = ?",
                 id);
     }
 
