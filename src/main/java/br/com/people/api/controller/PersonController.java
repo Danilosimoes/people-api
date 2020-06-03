@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class PersonController {
 
-    // Sprint Rest https://mkyong.com/spring-boot/spring-rest-hello-world-example/
+    // Sprint Rest https://mkyong.com/spring-boot/spring-rest-hello-world-example/https://mkyong.com/spring-boot/spring-rest-hello-world-example/
 
     @Autowired
     private DataBase dataBase;
