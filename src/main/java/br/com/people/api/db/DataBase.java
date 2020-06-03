@@ -33,4 +33,11 @@ public class DataBase {
                 },
                 id);
     }
+
+    public void deleteById(long id) {
+        jdbcTemplate.update(
+                "DELETE INTO PERSON WHERE ID = ?", id
+
+        );
+    }
 }

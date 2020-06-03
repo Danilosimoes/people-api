@@ -32,6 +32,16 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Person> deleteById(@PathVariable long id) {
+        log.info("The id of person is {}", id);
+        var person = dataBase.find(id);
+        return ResponseEntity.ok(person);
+    }
+
+
+
+
     // ADD update method
     // ADD delete method
 }
