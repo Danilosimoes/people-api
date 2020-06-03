@@ -32,6 +32,7 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
+    // TODO: delete
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Person> deleteById(@PathVariable long id) {
         log.info("The id of person is {}", id);
