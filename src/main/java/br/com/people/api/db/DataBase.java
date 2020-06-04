@@ -2,6 +2,7 @@ package br.com.people.api.db;
 
 import br.com.people.api.domain.Person;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.Update;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -35,10 +36,22 @@ public class DataBase {
     }
 
 
-    public int deleteById(Long id) {
+    public int deleteById(long id) {
         return jdbcTemplate.update(
                 "delete from person where id = ?",
                 id);
+    }
+
+
+    public Person UPDATE(Person person) {
+        return jdbcTemplate.update("UPDATE PERSON SET ? WHERE ID = ?"),
+                person.getName(),
+                person.getAge(),
+                person.getId(),
+        );
+
+                }
+
     }
 
 }

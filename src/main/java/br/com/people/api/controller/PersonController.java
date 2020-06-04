@@ -35,10 +35,18 @@ public class PersonController {
     // TODO: delete
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Person> deleteById(@PathVariable long id) {
-        log.info("The id of person is {}", id);
+        log.info("The id {} was successfully deleted", id);
         var person = dataBase.find(id);
         return ResponseEntity.ok(person);
     }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Person> Update(@PathVariable long id) {
+        log.info("The id {} was successfully updated", id);
+        var person = dataBase.find(id);
+        return ResponseEntity.ok(person);
+    }
+
 
 
 
