@@ -43,7 +43,7 @@ public class DataBase {
 
 
     public int UPDATE(Person person) {
-        return jdbcTemplate.update("UPDATE PERSON SET ? WHERE ID = ?",
+        return jdbcTemplate.update("UPDATE PERSON SET ID = ?, NAME = ?, AGE = ? WHERE ID = ?",
                 person.getName(),
                 person.getAge(),
                 person.getId()
@@ -52,6 +52,6 @@ public class DataBase {
                 }
 
 
-    }
+
 
 } // Erro class, interface or enum expected

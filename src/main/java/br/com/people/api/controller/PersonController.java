@@ -4,6 +4,7 @@ import br.com.people.api.db.DataBase;
 import br.com.people.api.domain.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,15 +38,16 @@ public class PersonController {
     public ResponseEntity<Person> deleteById(@PathVariable long id) {
         log.info("The id {} was successfully deleted", id);
         dataBase.deleteById(id);
-        return ResponseEntity.ok(long id);
+        return ResponseEntity.ok("OK"); // Erro de compatibilidade
     }
 
     @PutMapping
-    public ResponseEntity<Person> Update(@PathVariable Person person) {
-        log.info("The id {} was successfully updated", person);
-        var person = dataBase.find(person);
-        return ResponseEntity.ok(person);
+    public ResponseEntity<Person> UPDATE(@PathVariable Person person) {
+        log.info("The person {} was successfully updated", person);
+        dataBase.UPDATE(person);
+        return ResponseEntity.ok("OK"); // Erro de incompatibilidade
     }
+
 
 
 
