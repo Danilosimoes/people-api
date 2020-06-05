@@ -35,17 +35,19 @@ public class PersonController {
 
     // TODO: delete
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Person> deleteById(@PathVariable long id) {
+    public ResponseEntity<String> deleteById(@PathVariable long id) {
         log.info("The id {} was successfully deleted", id);
         dataBase.deleteById(id);
-        return ResponseEntity.ok("OK"); // Erro de compatibilidade
+        return ResponseEntity.ok("OK"); //
     }
 
+
+
     @PutMapping
-    public ResponseEntity<Person> UPDATE(@PathVariable Person person) {
+    public ResponseEntity<Person> UPDATE(@RequestBody Person person) {
         log.info("The person {} was successfully updated", person);
         dataBase.UPDATE(person);
-        return ResponseEntity.ok("OK"); // Erro de incompatibilidade
+        return ResponseEntity.ok(person);
     }
 
 
