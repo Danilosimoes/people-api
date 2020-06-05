@@ -35,10 +35,23 @@ public class DataBase {
     }
 
 
-    public int deleteById(Long id) {
+    public int deleteById(long id) {
         return jdbcTemplate.update(
                 "delete from person where id = ?",
                 id);
     }
 
-}
+
+    public int UPDATE(Person person) {
+        return jdbcTemplate.update("UPDATE PERSON SET ? WHERE ID = ?",
+                person.getName(),
+                person.getAge(),
+                person.getId()
+        );
+
+                }
+
+
+    }
+
+} // Erro class, interface or enum expected

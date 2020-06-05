@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class PersonController {
 
-    // Sprint Rest https://mkyong.com/spring-boot/spring-rest-hello-world-example/
+    // Sprint Rest https://mkyong.com/spring-boot/spring-rest-hello-world-example/https://mkyong.com/spring-boot/spring-rest-hello-world-example/
 
     @Autowired
     private DataBase dataBase;
@@ -32,12 +32,21 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
+    // TODO: delete
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Person> deleteById(@PathVariable long id) {
-        log.info("The id of person is {}", id);
+        log.info("The id {} was successfully deleted", id);
         var person = dataBase.find(id);
         return ResponseEntity.ok(person);
     }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Person> Update(@PathVariable long id) {
+        log.info("The id {} was successfully updated", id);
+        var person = dataBase.find(id);
+        return ResponseEntity.ok(person);
+    }
+
 
 
 
