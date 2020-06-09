@@ -35,7 +35,7 @@ public class PersonController {
 
     // TODO: delete
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable long id) {
+    public ResponseEntity<String> deleteById(@RequestBody long id) {
         log.info("The id {} was successfully deleted", id);
         dataBase.deleteById(id);
         return ResponseEntity.ok("OK"); //
