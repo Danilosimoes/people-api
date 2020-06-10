@@ -23,15 +23,20 @@ public class DataBase {
     }
 
     public Person find(long id) {
-        return jdbcTemplate.queryForObject("SELECT ID, NAME, AGE FROM PERSON WHERE ID = ?",
-                (rs, rowNum) -> {
-                    var person = new Person();
-                    person.setId(rs.getLong("ID"));
-                    person.setName(rs.getString("NAME"));
-                    person.setAge(rs.getInt("AGE"));
-                    return person;
-                },
-                id);
+        try {
+            return jdbcTemplate.queryForObject("SELECT ID, NAME, AGE FROM PERSON WHERE ID = ?",
+                    (rs, rowNum) -> {
+                        var person = new Person();
+                        person.setId(rs.getLong("ID"));
+                        person.setName(rs.getString("NAME"));
+                        person.setAge(rs.getInt("AGE"));
+                        return person;
+                    },
+                    id);
+        } catch (Exception ex) {
+            return null;
+        }
+
     }
 
 
@@ -42,16 +47,12 @@ public class DataBase {
     }
 
 
-    public int UPDATE(Person person) {
-        return jdbcTemplate.update("UPDATE PERSON SET ? WHERE ID = ?",
+    public int update(Person person) {
+        return jdbcTemplate.update("UPDATE PERSON SET NAME = ?, AGE = ? WHERE ID = ?",
                 person.getName(),
                 person.getAge(),
                 person.getId()
         );
 
-                }
-
-
     }
-
-} // Erro class, interface or enum expected
+}
