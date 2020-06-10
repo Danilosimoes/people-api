@@ -23,26 +23,28 @@ public class DataBase {
     }
 
     public Person find(long id) {
-        return jdbcTemplate.queryForObject("SELECT ID, NAME, AGE FROM PERSON WHERE ID = ?",
-                (rs, rowNum) -> {
-                    var person = new Person();
-                    person.setId(rs.getLong("ID"));
-                    person.setName(rs.getString("NAME"));
-                    person.setAge(rs.getInt("AGE"));
-                    return person;
-                },
-                id);
+        try {
+            return jdbcTemplate.queryForObject("SELECT ID, NAME, AGE FROM PERSON WHERE ID = ?",
+                    (rs, rowNum) -> {
+                        var person = new Person();
+                        person.setId(rs.getLong("ID"));
+                        person.setName(rs.getString("NAME"));
+                        person.setAge(rs.getInt("AGE"));
+                        return person;
+                    },
+                    id);
+        } catch (Exception ex) {
+            return null;
+        }
+
     }
 
 
     public int deleteById(long id) {
         return jdbcTemplate.update(
                 "delete from person where id = ?",
-                deleteById(id),id);
+                id);
     }
-
-
-    // crlt + alt + L formata o código
 
 
     public int update(Person person) {
@@ -53,6 +55,4 @@ public class DataBase {
         );
 
     }
-
-
 }
