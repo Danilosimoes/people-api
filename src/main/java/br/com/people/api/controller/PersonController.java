@@ -4,7 +4,6 @@ import br.com.people.api.db.DataBase;
 import br.com.people.api.domain.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +26,7 @@ public class PersonController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Person> get(@PathVariable long id){
+    public ResponseEntity<Person> get(@PathVariable long id) {
         log.info("The id of person is {}", id);
         var person = dataBase.find(id);
         return ResponseEntity.ok(person);
@@ -35,26 +34,19 @@ public class PersonController {
 
     // TODO: delete
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deleteById(@RequestBody long id) {
+    public ResponseEntity<Person> delete(@PathVariable long id) {
         log.info("The id {} was successfully deleted", id);
-        dataBase.deleteById(id);
-        return ResponseEntity.ok("OK"); //
-    }
-
-
-
-    @PutMapping
-    public ResponseEntity<Person> UPDATE(@RequestBody Person person) {
-        log.info("The person {} was successfully updated", person);
-        dataBase.UPDATE(person);
+        var person = dataBase.find(id);
         return ResponseEntity.ok(person);
     }
 
 
+    @PutMapping
+    public ResponseEntity<Person> update(@RequestBody Person person) {
+        log.info("The person {} was successfully updated", person);
+        dataBase.update(person);
+        return ResponseEntity.ok(person);
+    }
 
 
-
-
-    // ADD update method
-    // ADD delete method
 }

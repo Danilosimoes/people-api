@@ -38,20 +38,21 @@ public class DataBase {
     public int deleteById(long id) {
         return jdbcTemplate.update(
                 "delete from person where id = ?",
-                id);
+                deleteById(id),id);
     }
 
 
-    public int UPDATE(Person person) {
-        return jdbcTemplate.update("UPDATE PERSON SET ID = ?, NAME = ?, AGE = ? WHERE ID = ?",
+    // crlt + alt + L formata o código
+
+
+    public int update(Person person) {
+        return jdbcTemplate.update("UPDATE PERSON SET NAME = ?, AGE = ? WHERE ID = ?",
                 person.getName(),
                 person.getAge(),
                 person.getId()
         );
 
-                }
+    }
 
 
-
-
-} // Erro class, interface or enum expected
+}
