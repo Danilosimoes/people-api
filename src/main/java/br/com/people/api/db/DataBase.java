@@ -16,20 +16,22 @@ public class DataBase {
 
     public void insert(Person person) {
         jdbcTemplate.update(
-                "INSERT INTO PERSON (NAME, AGE) VALUES (?,?)",
+                "INSERT INTO PERSON (NAME, AGE, SEX) VALUES (?,?,?)",
                 person.getName(),
-                person.getAge()
+                person.getAge(),
+                person.getSex()
         );
     }
 
     public Person find(long id) {
         try {
-            return jdbcTemplate.queryForObject("SELECT ID, NAME, AGE FROM PERSON WHERE ID = ?",
+            return jdbcTemplate.queryForObject("SELECT ID, NAME, AGE, SEX FROM PERSON WHERE ID = ?",
                     (rs, rowNum) -> {
                         var person = new Person();
                         person.setId(rs.getLong("ID"));
                         person.setName(rs.getString("NAME"));
                         person.setAge(rs.getInt("AGE"));
+                        person.setSex(rs.getString("SEX"));
                         return person;
                     },
                     id);
@@ -48,9 +50,10 @@ public class DataBase {
 
 
     public int update(Person person) {
-        return jdbcTemplate.update("UPDATE PERSON SET NAME = ?, AGE = ? WHERE ID = ?",
+        return jdbcTemplate.update("UPDATE PERSON SET NAME = ?, AGE = ?, SEX = ? WHERE ID = ?",
                 person.getName(),
                 person.getAge(),
+                person.getSex(),
                 person.getId()
         );
 
