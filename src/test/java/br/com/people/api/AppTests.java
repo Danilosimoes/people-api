@@ -14,3 +14,10 @@ public class AppTests {
 	}
 
 }
+
+// PESQUISAR - ESTUDAR
+//DOCKER BUILD
+//DOCKER FILE
+//docker rm -f $(docker ps -aq)
+// gerar docker file a partir da people-api
+//configurar route 53

@@ -4,15 +4,14 @@ import br.com.people.api.db.DataBase;
 import br.com.people.api.domain.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("/v2/people")
 @Slf4j
-public class PersonController {
+public class PersonControllerV2 {
 
     // Sprint Rest https://mkyong.com/spring-boot/spring-rest-hello-world-example/https://mkyong.com/spring-boot/spring-rest-hello-world-example/
 
@@ -29,9 +28,10 @@ public class PersonController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Person> get(@PathVariable long id) {
-        log.info("The id of person is {}", id);
+
         var person = dataBase.find(id);
         if (person != null) {
+            log.info("The id of person is {}", id);
             return ResponseEntity.ok(person);
         }
         return ResponseEntity.notFound().build();
